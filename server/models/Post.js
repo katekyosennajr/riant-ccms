@@ -30,8 +30,12 @@ const postSchema = new mongoose.Schema({
         trim: true
     }],
     thumbnail: {
-        type: String
+        type: String,
+        default: ''
     },
+    images: [{
+        type: String
+    }],
     createdAt: {
         type: Date,
         default: Date.now

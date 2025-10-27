@@ -11,6 +11,8 @@ import {
   MenuItem,
   Chip
 } from '@mui/material';
+import RichTextEditor from './RichTextEditor';
+import ImageUpload from './ImageUpload';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -89,17 +91,32 @@ const CreatePost = () => {
             margin="normal"
             required
           />
-          <TextField
-            fullWidth
-            label="Konten"
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            margin="normal"
-            required
-            multiline
-            rows={6}
-          />
+          <Box sx={{ mt: 2, mb: 4 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Konten
+            </Typography>
+            <RichTextEditor
+              value={formData.content}
+              onChange={(content) => setFormData({ ...formData, content })}
+            />
+          </Box>
+          <Box sx={{ mt: 2, mb: 2 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Thumbnail
+            </Typography>
+            <ImageUpload
+              onUploadSuccess={(filePath) => setFormData({ ...formData, thumbnail: filePath })}
+            />
+            {formData.thumbnail && (
+              <Box sx={{ mt: 2 }}>
+                <img
+                  src={`http://localhost:5000${formData.thumbnail}`}
+                  alt="Thumbnail"
+                  style={{ maxWidth: '200px' }}
+                />
+              </Box>
+            )}
+          </Box>
           <TextField
             fullWidth
             label="Kategori"
