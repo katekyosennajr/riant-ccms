@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
+import { PrivateRoute } from './components/PrivateRoute';
 import './App.css';
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/posts/create" element={<CreatePost />} />
-          <Route path="/posts/edit/:id" element={<EditPost />} />
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/posts/create" element={<PrivateRoute><CreatePost /></PrivateRoute>} />
+          <Route path="/posts/edit/:id" element={<PrivateRoute><EditPost /></PrivateRoute>} />
           <Route path="/" element={<h1>Welcome to Riant CMS</h1>} />
         </Routes>
       </Layout>

@@ -9,7 +9,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  IconButton,
   Typography
 } from '@mui/material';
 import { Link } from 'react-router-dom';
