@@ -43,12 +43,15 @@ router.get('/', async (req, res) => {
 });
 
 // @route   GET /api/posts/:id
-// @desc    Ambil post by ID
+// @desc    Ambil post by ID dan increment view count
 // @access  Public
 router.get('/:id', async (req, res) => {
     try {
-        const post = await Post.findById(req.params.id)
-            .populate('author', ['username']);
+        const post = await Post.findByIdAndUpdate(
+            req.params.id,
+            { $inc: { views: 1 } },
+            { new: true }
+        ).populate('author', ['username']);
         
         if (!post) {
             return res.status(404).json({ msg: 'Post tidak ditemukan' });

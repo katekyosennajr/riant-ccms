@@ -43,6 +43,10 @@ const postSchema = new mongoose.Schema({
     updatedAt: {
         type: Date,
         default: Date.now
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 });
 
